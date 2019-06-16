@@ -10,8 +10,10 @@ language: java
 jdk:
  - oraclejdk11
 
+# Set os environment
+os: windows
+
 # Build script
-install: true
 script:
   - mvn -f spring-graphql-api/pom.xml install
   - mvn -f spring-graphql-api/pom.xml test
