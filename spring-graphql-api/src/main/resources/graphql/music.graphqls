@@ -1,0 +1,26 @@
+type Song  {
+    id: ID!
+    title: String!
+    summary: String
+    lyrics: String
+    publishedDate: String
+    artist: Artist!
+}
+
+type Artist {
+    id: ID!
+    firstName: String!
+    lastName: String
+    songs: [Song]!
+}
+
+# The Root Query for the application
+type Query {
+    fetchAllSongs: [Song]!
+    fetchSongsByArtistId(artistId: Int!): [Song]! 
+}
+
+# The Root Mutation for the application
+#type Mutation {
+#    writeSong(title: String!, summary: String, lyrics: String) : Song!
+#}
