@@ -13,12 +13,11 @@ jdk:
 # Build script
 script:
   - mvn -f spring-graphql-api/pom.xml install
-  - mvn -f spring-graphql-api/pom.xml test
 
 # Improve the build speed for future builds
 cache:
   directories:
   - $HOME/.m2
 
-before_install:
-  java -cp h2*.jar org.h2.tools.RunScript -url jdbc:h2:~/jooq -script spring-graphql-api/src/main/resource/h2schema/schema.sql
+# Speed up the build
+sudo: false
