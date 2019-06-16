@@ -40,8 +40,6 @@ class MusicApiControllerTest {
 		assertEquals(1, ((List<?>) result.getBody()).size());
 		assertEquals(HttpStatus.OK, result.getStatusCode());
 		verify(songService, times(1)).fetchAllSongs();
-		// Fail on purpose for CI testing
-		Assertions.fail("Fail for CI Testing");
 	}
 
 }
