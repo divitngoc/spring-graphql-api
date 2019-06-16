@@ -9,3 +9,14 @@ language: java
 # https://docs.travis-ci.com/user/reference/trusty/#jvm-clojure-groovy-java-scala-images
 jdk:
  - oraclejdk11
+
+# Build script
+install: true
+script:
+  - mvn -f spring-graphql-api/pom.xml install
+  - mvn -f spring-graphql-api/pom.xml test
+
+# Improve the build speed for future builds
+cache:
+  directories:
+  - $HOME/.m2
