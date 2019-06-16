@@ -13,7 +13,7 @@ jdk:
 # Build script
 install: true
 script:
-  - mvn -f spring-graphql-api/pom.xml clean install
+  - mvn -f spring-graphql-api/pom.xml install
   - mvn -f spring-graphql-api/pom.xml test
 
 # Improve the build speed for future builds
