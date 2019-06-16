@@ -30,6 +30,7 @@
 		<db.url>jdbc:h2:~/jooq</db.url>
 		<db.username>sa</db.username>
 		<db.password></db.password>
+		<travis>false</travis>
 	</properties>
 
 	<dependencies>
@@ -173,6 +174,7 @@
 									<outputSchemaToDefault>true</outputSchemaToDefault>
 								</database>
 							</generator>
+							<skip>${travis}</skip>
 						</configuration>
 					</execution>
 				</executions>
