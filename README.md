@@ -1,6 +1,6 @@
 # spring-graphql-api [![Build Status](https://travis-ci.com/DivitGitHub/spring-graphql-api.svg?branch=master)](https://travis-ci.com/DivitGitHub/spring-graphql-api)
 
-This is a Music GraphQL-API Spring boot application with CRUD functionality with h2 serving as a database and jooq for our database persistence layer.
+This is a Music GraphQL-API Spring boot application implements CRUD functionality with h2 serving as a database and jooq for our database persistence layer.
 
 ## What you'll need
 Java 11
