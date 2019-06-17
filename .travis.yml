@@ -21,3 +21,7 @@ cache:
 
 # Speed up build
 sudo: false
+
+# Ubuntu trusty server
+# Apparently it's the quickest out of the linux os
+dist: trusty
