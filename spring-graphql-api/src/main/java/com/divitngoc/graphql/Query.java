@@ -17,8 +17,7 @@ public class Query implements GraphQLQueryResolver {
 		return songService.fetchAllSongs();
 	}
 
-	public List<Song> fetchSongsByArtistId(int artistId)
-	{
+	public List<Song> fetchSongsByArtistId(int artistId) {
 		return songService.fetchSongsByArtistId(artistId);
 	}
 }
