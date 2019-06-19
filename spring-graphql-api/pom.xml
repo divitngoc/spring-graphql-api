@@ -23,9 +23,9 @@
 		<easy-random-version>4.0.0</easy-random-version>
 		<commons-testing-version>2.1.0</commons-testing-version>
 		<graphql-version>5.0.2</graphql-version>
-		<com.h2database.version>1.4.193</com.h2database.version>
+		<com.h2database.version>1.4.199</com.h2database.version>
 		<sql-maven-plugin.version>1.5</sql-maven-plugin.version>
-		<org.jooq.version>3.11.7</org.jooq.version>
+		<org.jooq.version>3.11.11</org.jooq.version>
 		<db.driver>org.h2.Driver</db.driver>
 		<db.url>jdbc:h2:~/jooq</db.url>
 		<db.username>sa</db.username>
@@ -53,6 +53,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.graphql-java</groupId>
@@ -115,10 +116,9 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>sql-maven-plugin</artifactId>
-				<version>1.5</version>
 				<executions>
 					<execution>
-						<phase>package</phase>
+						<phase>generate-sources</phase>
 						<goals>
 							<goal>execute</goal>
 						</goals>
@@ -158,6 +158,7 @@
 								<password>${db.password}</password>
 							</jdbc>
 							<generator>
+								<name>org.jooq.codegen.JavaGenerator</name>
 								<generate>
 									<deprecated>false</deprecated>
 									<pojos>true</pojos>
@@ -169,7 +170,8 @@
 									<directory>src/gen/</directory>
 								</target>
 								<database>
-									<includes>artist|song</includes>
+									<name>org.jooq.meta.h2.H2Database</name>
+									<includes>.*</includes>
 									<inputSchema>PUBLIC</inputSchema>
 									<outputSchemaToDefault>true</outputSchemaToDefault>
 								</database>
@@ -178,6 +180,13 @@
 						</configuration>
 					</execution>
 				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>com.h2database</groupId>
+						<artifactId>h2</artifactId>
+						<version>${com.h2database.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -228,4 +237,16 @@
 		</plugins>
 	</build>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<!-- Import dependency management from Spring Boot -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>2.1.4.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
