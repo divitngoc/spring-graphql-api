@@ -23,9 +23,9 @@
 		<easy-random-version>4.0.0</easy-random-version>
 		<commons-testing-version>2.1.0</commons-testing-version>
 		<graphql-version>5.0.2</graphql-version>
-		<com.h2database.version>1.4.193</com.h2database.version>
+		<com.h2database.version>1.4.199</com.h2database.version>
 		<sql-maven-plugin.version>1.5</sql-maven-plugin.version>
-		<org.jooq.version>3.11.7</org.jooq.version>
+		<org.jooq.version>3.11.11</org.jooq.version>
 		<db.driver>org.h2.Driver</db.driver>
 		<db.url>jdbc:h2:~/jooq</db.url>
 		<db.username>sa</db.username>
