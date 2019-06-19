@@ -8,11 +8,11 @@ language: java
 # A list of available JDKs in Trusty can be seed in:
 # https://docs.travis-ci.com/user/reference/trusty/#jvm-clojure-groovy-java-scala-images
 jdk:
- - oraclejdk11
+ - openjdk11
 
 # Build script
 script:
-  - mvn -f spring-graphql-api/pom.xml -Dtravis=true install
+  - mvn -f spring-graphql-api/pom.xml -Dtravis=false install
 
 # Improve the build speed for future builds
 cache:
