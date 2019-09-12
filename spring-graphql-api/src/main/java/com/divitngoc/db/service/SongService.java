@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.divitngoc.db.dao.SongDao;
+import com.divitngoc.db.service.factory.ServiceType;
 import com.divitngoc.generated.tables.pojos.Song;
 
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 @AllArgsConstructor
-public class SongService {
+public class SongService implements MusicService {
 
 	private final SongDao dao;
 
@@ -30,6 +31,11 @@ public class SongService {
 			return dao.fetchSongsByArtistId(artistId);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public ServiceType getType() {
+		return ServiceType.SONG;
 	}
 
 }
