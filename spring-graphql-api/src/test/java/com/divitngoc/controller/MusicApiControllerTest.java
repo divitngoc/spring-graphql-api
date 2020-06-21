@@ -41,7 +41,7 @@ class MusicApiControllerTest {
 		when(serviceFactory.getInstance(eq(ServiceType.SONG), any())).thenReturn(songService);
 		when(songService.fetchAllSongs()).thenReturn(List.of(random.nextObject(Song.class)));
 		// Method call
-		final ResponseEntity<?> result = controller.getAllSongs();
+		final ResponseEntity<?> result = controller.getSongs(null);
 		// Verify result
 		assertEquals(1, ((List<?>) result.getBody()).size());
 		assertEquals(HttpStatus.OK, result.getStatusCode());

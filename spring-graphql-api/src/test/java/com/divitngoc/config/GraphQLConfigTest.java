@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mock;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
 
 import com.divitngoc.db.dao.ArtistDao;
 import com.divitngoc.db.dao.SongDao;
@@ -24,11 +25,11 @@ class GraphQLConfigTest {
 
 	@Test
 	void testArtistResolver() {
-		assertNotNull(config.artistResolver(new SongService(mock(SongDao.class))));
+		assertNotNull(config.artistResolver(new SongService(mock(SongDao.class), new ModelMapper())));
 	}
 
 	@Test
 	void testQuery() {
-		assertNotNull(config.query(new SongService(mock(SongDao.class))));
+		assertNotNull(config.query(new SongService(mock(SongDao.class), new ModelMapper())));
 	}
 }

@@ -1,12 +1,14 @@
 package com.divitngoc.db.service;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.hamcrest.MockitoHamcrest.intThat;
 
+import org.hamcrest.Matchers;
 import org.jeasy.random.EasyRandom;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,12 +31,11 @@ class ArtistServiceTest {
 
 	@Test
 	void testFetchArtistById() {
-		when(dao.fetchArtistById(anyInt())).thenReturn(random.nextObject(Artist.class));
-		assertNotNull(service.fetchArtistById(5));
-		
+		when(dao.fetchArtistById(intThat(Matchers.greaterThan(0)))).thenReturn(random.nextObject(Artist.class));
+		assertTrue(service.fetchArtistById(5).isPresent());
+
 		// Argument less than 1
-		assertNull(service.fetchArtistById(-1));
-		assertNull(service.fetchArtistById(0));
+		assertFalse(service.fetchArtistById(-1).isPresent());
 		verify(dao, times(1)).fetchArtistById(anyInt());
 	}
 
