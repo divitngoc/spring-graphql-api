@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.divitngoc.db.dao.SongDao;
+import com.divitngoc.db.service.factory.ServiceType;
 import com.divitngoc.generated.tables.pojos.Song;
 import com.divitngoc.model.SongRequest;
 
@@ -17,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class SongService {
+public class SongService implements MusicService {
 
 	private final SongDao dao;
 	private final ModelMapper modelMapper;
@@ -45,6 +46,11 @@ public class SongService {
 	 */
 	public Optional<Integer> insertSong(SongRequest songRequest) {
 		return Optional.ofNullable(dao.insert(modelMapper.map(songRequest, Song.class)));
+	}
+
+	@Override
+	public ServiceType getType() {
+		return ServiceType.SONG;
 	}
 
 }
