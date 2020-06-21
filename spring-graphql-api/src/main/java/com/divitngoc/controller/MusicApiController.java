@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.divitngoc.db.service.SongService;
+import com.divitngoc.db.service.factory.MusicServiceFactory;
+import com.divitngoc.db.service.factory.ServiceType;
 import com.divitngoc.generated.tables.pojos.Song;
 import com.divitngoc.model.SongRequest;
 
@@ -25,11 +27,13 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping(value = "v1/music")
 public class MusicApiController {
 
-	private final SongService songService;
+	private final MusicServiceFactory musicServiceFactory;
 
 	@GetMapping(value = "/songs")
 	public ResponseEntity<List<Song>> getSongs(
 			@RequestParam(value = "artistId", required = false) final String artistIdStr) {
+		final SongService songService = musicServiceFactory.getInstance(ServiceType.SONG, SongService.class);
+
 		if (StringUtils.isEmpty(artistIdStr)) {
 			return ResponseEntity.ok(songService.fetchAllSongs());
 		}
@@ -44,7 +48,9 @@ public class MusicApiController {
 
 	@PostMapping(value = "/songs")
 	public ResponseEntity<Song> insertSong(@Valid @RequestBody final SongRequest songRequest) {
-		Integer id = songService.insertSong(songRequest).orElseThrow(() -> new RuntimeException());
+		Integer id = musicServiceFactory.getInstance(ServiceType.SONG, SongService.class).insertSong(songRequest)
+				// TODO throw a better exception
+				.orElseThrow(() -> new RuntimeException());
 		Song song = new Song();
 		song.setId(id);
 		return ResponseEntity.status(HttpStatus.CREATED).body(song);

@@ -6,13 +6,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.1.RELEASE</version>
+		<version>2.3.1.RELEASE</version>
 		<relativePath />
 	</parent>
 
 	<groupId>com.divitngoc</groupId>
 	<artifactId>spring-graphql-api</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 
 	<properties>
 		<java.version>11</java.version>
@@ -25,7 +25,7 @@
 		<graphql-version>5.0.2</graphql-version>
 		<com.h2database.version>1.4.199</com.h2database.version>
 		<sql-maven-plugin.version>1.5</sql-maven-plugin.version>
-		<org.jooq.version>3.12.3</org.jooq.version>
+		<org.jooq.version>3.13.2</org.jooq.version>
 		<db.driver>org.h2.Driver</db.driver>
 		<db.url>jdbc:h2:~/jooq</db.url>
 		<db.username>sa</db.username>
@@ -44,6 +44,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
@@ -58,6 +62,11 @@
 		<dependency>
 			<groupId>org.jooq</groupId>
 			<artifactId>jooq-codegen</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.divitngoc</groupId>
+			<artifactId>divit-jooq-module</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -79,7 +88,6 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
 		<!-- Test -->
 		<dependency>
 			<groupId>org.modelmapper</groupId>
