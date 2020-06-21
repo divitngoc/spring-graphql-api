@@ -19,6 +19,20 @@ public class GlobalExceptionController {
 
 	private final ErrorResponseFactory errorResponseFactory;
 
+	/**
+	 * 
+	 * Example:
+	 * <pre>
+{
+	"httpStatus": 400,
+	"field": "songRequest.title",
+	"errorMessage": "Title must not be null/blank"
+}
+	 * </pre>
+	 * 
+	 * @param e
+	 * @return
+	 */
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ErrorResponse> unHandledExceptions(MethodArgumentNotValidException e) {
 		final HttpStatus status = HttpStatus.BAD_REQUEST;
