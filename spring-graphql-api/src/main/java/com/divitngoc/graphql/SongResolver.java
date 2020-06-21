@@ -13,7 +13,7 @@ public class SongResolver implements GraphQLResolver<Song> {
 	private final ArtistService artistService;
 
 	public Artist getArtist(final Song song) {
-		return artistService.fetchArtistById(song.getArtistId());
+		return artistService.fetchArtistById(song.getArtistId()).orElse(null);
 	}
 
 }

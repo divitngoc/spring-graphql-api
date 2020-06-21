@@ -11,8 +11,8 @@ CREATE TABLE song (
   summary VARCHAR(255),
   title VARCHAR(255) NOT NULL,
   lyrics VARCHAR(20000),
-  published_date DATE NOT NULL,
-  artist_id INT NOT NULL,
+  published_date DATE,
+  artist_id INT,
   CONSTRAINT fk_song_artist_id FOREIGN KEY (artist_id) REFERENCES artist (id)  
   ON UPDATE CASCADE ON DELETE CASCADE
 );
